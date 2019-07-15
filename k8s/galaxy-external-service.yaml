@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: galaxy
+  name: galaxy-external
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 80
+  selector:
+    app: irida-galaxy
+  type: LoadBalancer

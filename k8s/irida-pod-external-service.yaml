@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: irida
+  name: irida-service
+spec:
+  ports:
+  - name: "8080"
+    port: 80
+    targetPort: 8080
+  selector:
+    app: irida-galaxy
+  type: LoadBalancer

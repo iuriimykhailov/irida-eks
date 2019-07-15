@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: irida-galaxy
+  name: irida-pod
+spec:
+  volumes:
+    - name: global-share
+      emptyDir: {}
+  containers:
+  - name: irida
+    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/dfornika/irida
+    args:
+    - catalina.sh
+    - run
+    env:
+    - name: GET_HOSTS_FROM
+      value: dns
+    volumeMounts:
+    - mountPath: "/opt/irida/data"
+      name: global-share
+    ports:
+    - containerPort: 8080
+  - name: galaxy
+    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/bgruening/galaxy-stable    
+    volumeMounts:
+    - mountPath: "/export"
+      name: global-share
+    - mountPath: "/opt/irida/data"
+      name: global-share
+
+
+
+
+    
+        
+        
+        
+        
