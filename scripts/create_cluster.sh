@@ -1,3 +1,4 @@
+#!/bin/bash
 eksctl create cluster \
 --name $K8S_CLUSTER_NAME \
 --version 1.13 \
@@ -8,4 +9,3 @@ eksctl create cluster \
 --nodes-max 4 \
 --node-ami auto
 
-sh ./deploy-app.sh

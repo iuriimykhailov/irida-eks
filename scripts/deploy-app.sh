@@ -1,3 +1,4 @@
+#!/bin/bash
 kubectl apply -f ./root/k8s/irida-db-service.yaml
 kubectl apply -f ./root/k8s/irida-pod-external-service.yaml
 kubectl apply -f ./root/k8s/irida-db-deployment.yaml

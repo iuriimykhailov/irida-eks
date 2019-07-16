@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 function prop {
     grep "${1}" config.properties | cut -d'=' -f2
