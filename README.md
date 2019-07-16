@@ -1,6 +1,6 @@
 # irida-eks
 
-## Purpose of this project is the integration of IRIDA and Amazon EKS.
+#### Purpose of this project is the integration of IRIDA and Amazon EKS.
 - Provides an environment with the tooling needed for work with EKS
 - Provides a script to creates an EKS cluster and deploy IRIDA environment
 - Provides a script to teardown the IRIDA environment and EKS cluster.
