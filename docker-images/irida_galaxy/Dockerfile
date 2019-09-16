@@ -13,7 +13,7 @@ COPY tools-list.yml /temp_config/tools-list.yml
 COPY install_image.sh /install_image.sh
 
 RUN yum groupinstall -y "Development tools" && \
-yum install -y db4-devel expat-devel java && \
+yum install -y db4-devel expat-devel java sudo && \
 yum install -y wget && \
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3 && \
@@ -36,7 +36,7 @@ mv /temp_config/requirements.txt requirements.txt && \
 mv /temp_config/tools-list.yml tools-list.yml && \
 rm -rf /tmp_config && \
 rpm -Uvh https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
-yum install -y postgresql11-server sudo
+yum install -y postgresql11-server
 
 RUN [ "/bin/bash", "-c", "./install_image.sh" ]
 

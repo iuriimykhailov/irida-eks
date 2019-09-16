@@ -1,1 +1,1 @@
-docker build -t bccdc/irida-galaxy:0.1 .
+docker build -t bccdc/irida-galaxy:0.2 .

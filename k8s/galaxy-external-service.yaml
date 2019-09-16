@@ -6,9 +6,9 @@ metadata:
   name: galaxy-external
 spec:
   ports:
-  - name: "80"
-    port: 80
-    targetPort: 80
+  - name: "9898"
+    port: 9898
+    targetPort: 9898
   selector:
     app: irida-galaxy
   type: LoadBalancer

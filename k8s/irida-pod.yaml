@@ -10,7 +10,7 @@ spec:
       emptyDir: {}
   containers:
   - name: irida
-    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/dfornika/irida
+    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/dfornika/irida:0.3
     args:
     - catalina.sh
     - run
@@ -23,12 +23,16 @@ spec:
     ports:
     - containerPort: 8080
   - name: galaxy
-    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/bgruening/galaxy-stable    
+    image: 511019881784.dkr.ecr.us-west-2.amazonaws.com/bccdc/irida-galaxy:0.2
+    ports:
+    - containerPort: 9898    
     volumeMounts:
     - mountPath: "/export"
       name: global-share
     - mountPath: "/opt/irida/data"
       name: global-share
+  tolerations:
+    - operator: "Exists"
 
 
 
