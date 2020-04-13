@@ -15,6 +15,7 @@ COPY install_image.sh /install_image.sh
 RUN yum groupinstall -y "Development tools" && \
 yum install -y db4-devel expat-devel java sudo && \
 yum install -y wget && \
+yum install -y which && \
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3 && \
 conda config --add channels conda-forge && \
@@ -23,7 +24,7 @@ conda config --add channels r && \
 conda config --add channels bioconda && \
 conda create --name galaxy python=2.7 samtools && \
 source activate galaxy && \
-conda install -y perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot libjpeg-turbo paste && \
+conda install -y perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot libjpeg-turbo paste testfixtures && \
 wget https://github.com/galaxyproject/galaxy/archive/v17.01.tar.gz && \
 tar -zxvf v17.01.tar.gz && \
 rm -f v17.01.tar.gz && mv galaxy-17.01 galaxy && cd galaxy && mkdir database/dependencies && \
@@ -36,12 +37,14 @@ mv /temp_config/requirements.txt requirements.txt && \
 mv /temp_config/tools-list.yml tools-list.yml && \
 rm -rf /tmp_config && \
 rpm -Uvh https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
-yum install -y postgresql11-server
+yum install -y postgresql11-server && \
+pip install testfixtures && \
+pip show testfixtures
 
 RUN [ "/bin/bash", "-c", "./install_image.sh" ]
 
 ENTRYPOINT sudo -u postgres ./usr/pgsql-11/bin/pg_ctl -D /var/lib/pgsql/data -l /var/lib/pgsql/logfile start && \
           source activate galaxy && \
-           ./galaxy/run.sh
+           ./galaxy/run.sh --skip-venv
 
 
