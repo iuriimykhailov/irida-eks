@@ -4,7 +4,7 @@ MarkupSafe==0.23
 PyYAML>=3.11, <6.0
 SQLAlchemy==1.0.15
 mercurial==3.7.3
-numpy==1.9.2
+numpy==1.22.0
 pycrypto==2.6.1
 
 # Install python_lzo if you want to support indexed access to lzo-compressed
